@@ -301,7 +301,7 @@ _data = {
 "run": SubResource("Animation_gj7ye")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_dclsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
