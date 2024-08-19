@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=3 uid="uid://be1of6p0tgw8g"]
+
+[ext_resource type="Texture2D" uid="uid://ct5ske3x3o16b" path="res://Pixel Adventure 1/Free/Items/Fruits/Collected.png" id="1_uao12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gq3d"]
+atlas = ExtResource("1_uao12")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bex8f"]
+atlas = ExtResource("1_uao12")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbkyu"]
+atlas = ExtResource("1_uao12")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q5pm"]
+atlas = ExtResource("1_uao12")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hygi"]
+atlas = ExtResource("1_uao12")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wywml"]
+atlas = ExtResource("1_uao12")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_glb6n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gq3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bex8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbkyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q5pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hygi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wywml")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_ysve2"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["default"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.633333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2rff"]
+_data = {
+"default": SubResource("Animation_ysve2")
+}
+
+[node name="Vanish" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.53125, 1.375)
+sprite_frames = SubResource("SpriteFrames_glb6n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f2rff")
+}
+autoplay = "default"

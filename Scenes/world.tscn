@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdlwytguivmr8"]
+[gd_scene load_steps=9 format=3 uid="uid://bdlwytguivmr8"]
 
 [ext_resource type="PackedScene" uid="uid://fpul1tihl6f1" path="res://Scenes/player.tscn" id="1_mcpjr"]
 [ext_resource type="Texture2D" uid="uid://booony2sqk3pa" path="res://prehistoric-platformer/background-elements/tileset-1.png" id="2_grrbm"]
 [ext_resource type="Texture2D" uid="uid://csgh0ll5ymr5x" path="res://prehistoric-platformer/background-elements/sky-2.png" id="3_tbddo"]
 [ext_resource type="Texture2D" uid="uid://b5xhusfyexbyk" path="res://prehistoric-platformer/background-elements/forest-1.png" id="4_0b2kc"]
 [ext_resource type="PackedScene" uid="uid://dy640bycq1h8w" path="res://Scenes/pineapple.tscn" id="5_v3vxs"]
+[ext_resource type="Script" path="res://Scenes/Label.gd" id="6_4ybaf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1hve3"]
 texture = ExtResource("2_grrbm")
@@ -2065,6 +2066,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1hve3")
 
 [node name="World" type="Node2D"]
+position = Vector2(-14, 463)
 
 [node name="Player" parent="." instance=ExtResource("1_mcpjr")]
 position = Vector2(627, -31)
@@ -2093,7 +2095,7 @@ layer_1/tile_data = PackedInt32Array(393244, 2555904, 10, 458780, 2555904, 11, 3
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Sunset" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(13, -98)
+position = Vector2(-1, 365)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/Sunset"]
 offset_left = 3.0
@@ -2102,8 +2104,10 @@ offset_right = 4099.0
 offset_bottom = 255.0
 texture = ExtResource("3_tbddo")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Forest" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-14, 463)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/Forest"]
 offset_left = 8.0
@@ -2112,6 +2116,24 @@ offset_right = 6408.0
 offset_bottom = 172.0
 texture = ExtResource("4_0b2kc")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Pineapple" parent="." instance=ExtResource("5_v3vxs")]
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="Pineapple" parent="Collectables" instance=ExtResource("5_v3vxs")]
 position = Vector2(830, -50)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = -0.054
+anchor_right = 0.0381944
+anchor_bottom = -0.0154198
+offset_left = 3.0
+offset_top = 35.992
+offset_right = 54.0
+offset_bottom = 58.992
+text = "SCORE"
+script = ExtResource("6_4ybaf")
+metadata/_edit_use_anchors_ = true

@@ -3,7 +3,12 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func collected():
-	pass
+	var vanish = preload("res://Scenes/vanish.tscn")
+	var new_vanish_object = vanish.instantiate()
+	get_tree().current_scene.add_child(new_vanish_object)
+	new_vanish_object.global_position = global_position
+	GameManager.score += 1
+	
 	
 
 
