@@ -131,7 +131,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5a6l"]
-radius = 14.0357
+radius = 17.0
 
 [sub_resource type="Animation" id="Animation_mdmau"]
 length = 3.5
@@ -172,7 +172,7 @@ script = ExtResource("1_r0sdn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(13, 15)
-scale = Vector2(1.9375, 1.9375)
+scale = Vector2(2.5, 2.375)
 sprite_frames = SubResource("SpriteFrames_dcwhq")
 animation = &"Pineapple"
 
