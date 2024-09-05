@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdlwytguivmr8"]
+[gd_scene load_steps=11 format=3 uid="uid://bdlwytguivmr8"]
 
 [ext_resource type="PackedScene" uid="uid://fpul1tihl6f1" path="res://Scenes/player.tscn" id="1_mcpjr"]
 [ext_resource type="Texture2D" uid="uid://booony2sqk3pa" path="res://prehistoric-platformer/background-elements/tileset-1.png" id="2_grrbm"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dy640bycq1h8w" path="res://Scenes/pineapple.tscn" id="5_v3vxs"]
 [ext_resource type="Script" path="res://Scenes/Label.gd" id="6_4ybaf"]
 [ext_resource type="PackedScene" uid="uid://bnn8u32g7m70g" path="res://Scenes/enemy_dragon.tscn" id="7_qg701"]
+[ext_resource type="PackedScene" uid="uid://c2kpncq5ppgon" path="res://Scenes/enemy_lizard.tscn" id="8_2301r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1hve3"]
 texture = ExtResource("2_grrbm")
@@ -2161,3 +2162,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Dragon" parent="." instance=ExtResource("7_qg701")]
 position = Vector2(1006, -123)
+
+[node name="Lizard" parent="." instance=ExtResource("8_2301r")]
+position = Vector2(971, -24)

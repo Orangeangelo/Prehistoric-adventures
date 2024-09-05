@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2kpncq5ppgon"]
+[gd_scene load_steps=11 format=3 uid="uid://c2kpncq5ppgon"]
 
 [ext_resource type="Texture2D" uid="uid://ckkj6iofhvvtc" path="res://prehistoric-platformer/monsters/lizard-1.png" id="1_rokla"]
+[ext_resource type="Script" path="res://Scenes/enemy_lizard.gd" id="1_yikse"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6cree"]
 atlas = ExtResource("1_rokla")
@@ -56,10 +57,12 @@ animations = [{
 radius = 25.1794
 
 [node name="Lizard" type="CharacterBody2D" groups=["Hurt"]]
+script = ExtResource("1_yikse")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(11, -4)
 sprite_frames = SubResource("SpriteFrames_2x1ol")
+autoplay = "default"
 frame_progress = 0.214207
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -67,3 +70,6 @@ position = Vector2(1, -2)
 shape = SubResource("CircleShape2D_gsw3d")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
