@@ -65,4 +65,6 @@ shape = SubResource("CircleShape2D_ir77q")
 [node name="Timer" type="Timer" parent="." groups=["Hurt"]]
 autostart = true
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

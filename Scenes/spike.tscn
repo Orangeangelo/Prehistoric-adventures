@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b8hdpk12n6my6"]
+
+[node name="Spike" type="Area2D"]

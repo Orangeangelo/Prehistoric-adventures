@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdlwytguivmr8"]
+[gd_scene load_steps=12 format=3 uid="uid://bdlwytguivmr8"]
 
 [ext_resource type="PackedScene" uid="uid://fpul1tihl6f1" path="res://Scenes/player.tscn" id="1_mcpjr"]
 [ext_resource type="Texture2D" uid="uid://booony2sqk3pa" path="res://prehistoric-platformer/background-elements/tileset-1.png" id="2_grrbm"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dy640bycq1h8w" path="res://Scenes/pineapple.tscn" id="5_v3vxs"]
 [ext_resource type="Script" path="res://Scenes/Label.gd" id="6_4ybaf"]
 [ext_resource type="PackedScene" uid="uid://bnn8u32g7m70g" path="res://Scenes/enemy_dragon.tscn" id="7_qg701"]
-[ext_resource type="PackedScene" uid="uid://c2kpncq5ppgon" path="res://Scenes/enemy_lizard.tscn" id="8_2301r"]
+[ext_resource type="Texture2D" uid="uid://dipfxl6cnordh" path="res://Pixel Adventure 1/Free/Traps/Spikes/Idle.png" id="9_y8v3k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1hve3"]
 texture = ExtResource("2_grrbm")
@@ -2067,6 +2067,9 @@ texture = ExtResource("2_grrbm")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1hve3")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npakl"]
+size = Vector2(42, 28)
+
 [node name="World" type="Node2D"]
 position = Vector2(-21, 549)
 
@@ -2152,16 +2155,54 @@ anchors_preset = -1
 anchor_top = -0.054
 anchor_right = 0.0381944
 anchor_bottom = -0.0154198
-offset_left = 12.0
-offset_top = 66.992
-offset_right = 63.0
-offset_bottom = 89.992
+offset_left = 13.0
+offset_top = 63.992
+offset_right = 64.0
+offset_bottom = 86.992
 text = "SCORE"
 script = ExtResource("6_4ybaf")
 metadata/_edit_use_anchors_ = true
 
 [node name="Dragon" parent="." instance=ExtResource("7_qg701")]
-position = Vector2(1006, -123)
+position = Vector2(2342, -162)
 
-[node name="Lizard" parent="." instance=ExtResource("8_2301r")]
-position = Vector2(971, -24)
+[node name="Dragon2" parent="." instance=ExtResource("7_qg701")]
+position = Vector2(1011, -113)
+
+[node name="Spike" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike"]
+position = Vector2(1114, -9)
+shape = SubResource("RectangleShape2D_npakl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike"]
+position = Vector2(1115, -17)
+scale = Vector2(2.75, 1.6875)
+texture = ExtResource("9_y8v3k")
+
+[node name="Area2D" type="Area2D" parent="Spike"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spike/Area2D"]
+position = Vector2(1114, -17)
+shape = SubResource("RectangleShape2D_npakl")
+
+[node name="Spike2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike2"]
+position = Vector2(1690, -8.5)
+shape = SubResource("RectangleShape2D_npakl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike2"]
+position = Vector2(1691, -16.5)
+scale = Vector2(2.75, 1.6875)
+texture = ExtResource("9_y8v3k")
+
+[node name="Area2D" type="Area2D" parent="Spike2"]
+position = Vector2(576, 0.5)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spike2/Area2D"]
+position = Vector2(1114, -17)
+shape = SubResource("RectangleShape2D_npakl")
+
+[connection signal="body_entered" from="Spike/Area2D" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Spike2/Area2D" to="Player" method="_on_area_2d_body_entered"]

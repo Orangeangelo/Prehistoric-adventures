@@ -72,4 +72,5 @@ shape = SubResource("CircleShape2D_gsw3d")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

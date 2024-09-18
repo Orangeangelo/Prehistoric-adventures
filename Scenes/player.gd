@@ -1,20 +1,18 @@
 extends CharacterBody2D
 
 
+const SPEED = 500
 @export var speed = 500.0
 @export var  jump_velocity = -400.0
 @export var acceleration : float = 75.0
 @export var jumps = 1
-
 enum state {IDLE, RUNNING, JUMPUP, JUMPDOWN, HURT}
-
 var anim_state = state.IDLE
-
 @onready var animator = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 
 func update_state():
 	if anim_state == state.HURT:
@@ -67,3 +65,8 @@ func _physics_process(delta):
 	update_state()
 	update_animation(direction)
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == "Player":
+		get_tree().reload_current_scene()

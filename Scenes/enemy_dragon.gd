@@ -17,3 +17,8 @@ func _process(delta: float):
 func _on_timer_timeout():
 	direction *= -1 
 	
+
+
+func _on_body_entered(body):
+	if body.name == "Player":
+		get_tree().reload_current_scene()
