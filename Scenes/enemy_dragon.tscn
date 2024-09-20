@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnn8u32g7m70g"]
+
+[ext_resource type="Texture2D" uid="uid://c2pepikglwgov" path="res://prehistoric-platformer/monsters/dragon-1.png" id="1_j48to"]
+[ext_resource type="Script" path="res://Scenes/enemy_dragon.gd" id="1_m4cx7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owtnc"]
+atlas = ExtResource("1_j48to")
+region = Rect2(0, 0, 98, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvdw4"]
+atlas = ExtResource("1_j48to")
+region = Rect2(98, 0, 98, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coso7"]
+atlas = ExtResource("1_j48to")
+region = Rect2(196, 0, 98, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulc30"]
+atlas = ExtResource("1_j48to")
+region = Rect2(294, 0, 98, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwjbg"]
+atlas = ExtResource("1_j48to")
+region = Rect2(0, 65, 98, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5oht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owtnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvdw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coso7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulc30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwjbg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ir77q"]
+radius = 28.0
+
+[node name="Dragon" type="Area2D" groups=["Hurt"]]
+script = ExtResource("1_m4cx7")
+flip_time = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_w5oht")
+autoplay = "default"
+frame_progress = 0.213894
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ir77q")
+
+[node name="Timer" type="Timer" parent="." groups=["Hurt"]]
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
