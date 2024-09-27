@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhcjxpnc7swia"]
+[gd_scene load_steps=4 format=3 uid="uid://bm1i8ovdu3ug1"]
 
-[ext_resource type="Script" path="res://menu.gd" id="1_xr1v0"]
-[ext_resource type="Texture2D" uid="uid://v0sbdrjf8f6c" path="res://prehistoric-platformer/background-elements/sky-1.png" id="2_pfyxx"]
+[ext_resource type="Script" path="res://menu.gd" id="1_qjbjp"]
+[ext_resource type="Texture2D" uid="uid://v0sbdrjf8f6c" path="res://prehistoric-platformer/background-elements/sky-1.png" id="2_5dioo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eq8nn"]
-texture = ExtResource("2_pfyxx")
+texture = ExtResource("2_5dioo")
 modulate_color = Color(0.691357, 0.691357, 0.691357, 1)
 
 [node name="Menu" type="Control"]
@@ -14,13 +14,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xr1v0")
+script = ExtResource("1_qjbjp")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -5.0
+offset_right = -1.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_eq8nn")
@@ -45,13 +49,8 @@ size_flags_vertical = 8
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 60
-text = "Play"
-
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "Quit"
+text = "Reset"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -11,12 +11,8 @@ config_version=5
 [application]
 
 config/name="Prehistoric Adventures"
-<<<<<<< HEAD
-config/features=PackedStringArray("4.2", "GL Compatibility")
-=======
-run/main_scene="res://Scenes/world.tscn"
+run/main_scene="res://Scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
->>>>>>> f38c8cb8d02cfdb5151e0a26969a4125ef72b916
 config/icon="res://icon.svg"
 
 [autoload]

@@ -1,20 +1,6 @@
 extends CharacterBody2D
 
-
-<<<<<<< HEAD
-@export var speed = 300.0
-@export var  jump_velocity = -400.0
-@export var acceleration : float = 15.0
-@export var jumps = 1
-
-enum state {IDLE, RUNNING, JUMPUP, JUMPDOWN, HURT}
-
-var anim_state = state.IDLE
-
-@onready var animator = $AnimatedSprite2D
-@onready var animation_player = $AnimationPlayer
-
-=======
+#This code initializes the characters parameters like speed, jump velocity, acceleration etc.
 const SPEED = 500
 @export var speed = 500.0
 @export var  jump_velocity = -400.0
@@ -24,13 +10,9 @@ enum state {IDLE, RUNNING, JUMPUP, JUMPDOWN, HURT}
 var anim_state = state.IDLE
 @onready var animator = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
->>>>>>> f38c8cb8d02cfdb5151e0a26969a4125ef72b916
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
-<<<<<<< HEAD
-=======
+#This block of code updates the characters animation state based on their current situation.
 func update_state():
 	if anim_state == state.HURT:
 		return
@@ -45,6 +27,7 @@ func update_state():
 		else:
 			anim_state = state.JUMPDOWN
 
+#This block of code updates the characters animation and current state.
 func update_animation(direction):
 	if direction > 0:
 		animator.flip_h = false
@@ -62,32 +45,16 @@ func update_animation(direction):
 		state.HURT:
 			animation_player.play("hurt")
 
->>>>>>> f38c8cb8d02cfdb5151e0a26969a4125ef72b916
+#This code manages the players movement and jumping while applying gravity.
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 	# Handle jump.
-<<<<<<< HEAD
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-=======
 	if Input.is_action_just_pressed("jump") and is_on_floor():
->>>>>>> f38c8cb8d02cfdb5151e0a26969a4125ef72b916
 		velocity.y = jump_velocity
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-<<<<<<< HEAD
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = move_toward(velocity.x,direction * speed,acceleration)
-	else:
-		velocity.x = move_toward(velocity.x, 0, acceleration/2)
-		
-
-	move_and_slide()
-=======
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = move_toward(velocity.x,direction*speed,acceleration)
@@ -99,7 +66,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_area_2d_body_entered(body):
+
+#This block of code makes the player reset whenever it collides with a spike, causing the scene to reset and the score resets as well.
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		get_tree().reload_current_scene()
->>>>>>> f38c8cb8d02cfdb5151e0a26969a4125ef72b916
+		GameManager.reset_score() #This is the code that resets the score
+		get_tree().reload_current_scene() #This is the code that reloads the world when the player dies.
